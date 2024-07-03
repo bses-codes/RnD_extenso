@@ -1,0 +1,79 @@
+[2024-05-16T11:19:48.928+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-05-16T11:19:48.969+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_tables.import_table2 scheduled__2024-05-07T00:00:00+00:00 [queued]>
+[2024-05-16T11:19:48.974+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_tables.import_table2 scheduled__2024-05-07T00:00:00+00:00 [queued]>
+[2024-05-16T11:19:48.976+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 6
+[2024-05-16T11:19:49.013+0000] {taskinstance.py:2327} INFO - Executing <Task(BashOperator): import_table2> on 2024-05-07 00:00:00+00:00
+[2024-05-16T11:19:49.023+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_tables', 'import_table2', 'scheduled__2024-05-07T00:00:00+00:00', '--job-id', '395', '--raw', '--subdir', 'DAGS_FOLDER/dag_mysql.py', '--cfg-path', '/tmp/tmp3fjyb49h']
+[2024-05-16T11:19:49.025+0000] {standard_task_runner.py:91} INFO - Job 395: Subtask import_table2
+[2024-05-16T11:19:49.025+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=235) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-05-16T11:19:49.032+0000] {standard_task_runner.py:63} INFO - Started process 247 to run task
+[2024-05-16T11:19:49.105+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_tables.import_table2 scheduled__2024-05-07T00:00:00+00:00 [running]> on host 7084a6d88d3b
+[2024-05-16T11:19:49.216+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='bses' AIRFLOW_CTX_DAG_ID='dag_tables' AIRFLOW_CTX_TASK_ID='import_table2' AIRFLOW_CTX_EXECUTION_DATE='2024-05-07T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-05-07T00:00:00+00:00'
+[2024-05-16T11:19:49.219+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-05-16T11:19:49.237+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-05-16T11:19:49.244+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n                mysql -h host.docker.internal -u root --password=12345678 test < /opt/***/dags/product_category.sql;\n                ']
+[2024-05-16T11:19:49.264+0000] {subprocess.py:86} INFO - Output:
+[2024-05-16T11:19:49.335+0000] {subprocess.py:93} INFO - ERROR 1146 (42S02) at line 41: Table 'test.product_category' doesn't exist
+[2024-05-16T11:19:49.341+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2024-05-16T11:19:49.345+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-05-16T11:19:49.355+0000] {taskinstance.py:2890} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 243, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2024-05-16T11:19:49.363+0000] {taskinstance.py:1205} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_tables, task_id=import_table2, execution_date=20240507T000000, start_date=20240516T111948, end_date=20240516T111949
+[2024-05-16T11:19:49.419+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 395 for task import_table2 (Bash command failed. The command returned a non-zero exit code 1.; 247)
+[2024-05-16T11:19:49.478+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-05-16T11:19:49.566+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-05-16T11:19:49.577+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-05-16T11:22:31.229+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-05-16T11:22:31.278+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_tables.import_table2 scheduled__2024-05-07T00:00:00+00:00 [queued]>
+[2024-05-16T11:22:31.286+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_tables.import_table2 scheduled__2024-05-07T00:00:00+00:00 [queued]>
+[2024-05-16T11:22:31.289+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 6
+[2024-05-16T11:22:31.307+0000] {taskinstance.py:2327} INFO - Executing <Task(BashOperator): import_table2> on 2024-05-07 00:00:00+00:00
+[2024-05-16T11:22:31.316+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=492) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-05-16T11:22:31.319+0000] {standard_task_runner.py:63} INFO - Started process 509 to run task
+[2024-05-16T11:22:31.316+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_tables', 'import_table2', 'scheduled__2024-05-07T00:00:00+00:00', '--job-id', '445', '--raw', '--subdir', 'DAGS_FOLDER/dag_mysql.py', '--cfg-path', '/tmp/tmppqlmi9il']
+[2024-05-16T11:22:31.327+0000] {standard_task_runner.py:91} INFO - Job 445: Subtask import_table2
+[2024-05-16T11:22:31.419+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_tables.import_table2 scheduled__2024-05-07T00:00:00+00:00 [running]> on host 7084a6d88d3b
+[2024-05-16T11:22:31.483+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='bses' AIRFLOW_CTX_DAG_ID='dag_tables' AIRFLOW_CTX_TASK_ID='import_table2' AIRFLOW_CTX_EXECUTION_DATE='2024-05-07T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-05-07T00:00:00+00:00'
+[2024-05-16T11:22:31.484+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-05-16T11:22:31.491+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-05-16T11:22:31.494+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n                mysql -h host.docker.internal -u root --password=12345678 test < /opt/***/dags/product_category.sql\n                ']
+[2024-05-16T11:22:31.502+0000] {subprocess.py:86} INFO - Output:
+[2024-05-16T11:22:31.622+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2024-05-16T11:22:31.624+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-05-16T11:22:31.667+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=dag_tables, task_id=import_table2, execution_date=20240507T000000, start_date=20240516T112231, end_date=20240516T112231
+[2024-05-16T11:22:31.732+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-05-16T11:22:31.757+0000] {taskinstance.py:3482} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-05-16T11:22:31.764+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-05-16T11:24:46.467+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-05-16T11:24:46.505+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_tables.import_table2 scheduled__2024-05-07T00:00:00+00:00 [queued]>
+[2024-05-16T11:24:46.513+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_tables.import_table2 scheduled__2024-05-07T00:00:00+00:00 [queued]>
+[2024-05-16T11:24:46.517+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 6
+[2024-05-16T11:24:46.544+0000] {taskinstance.py:2327} INFO - Executing <Task(BashOperator): import_table2> on 2024-05-07 00:00:00+00:00
+[2024-05-16T11:24:46.550+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=713) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-05-16T11:24:46.552+0000] {standard_task_runner.py:63} INFO - Started process 737 to run task
+[2024-05-16T11:24:46.550+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_tables', 'import_table2', 'scheduled__2024-05-07T00:00:00+00:00', '--job-id', '490', '--raw', '--subdir', 'DAGS_FOLDER/dag_mysql.py', '--cfg-path', '/tmp/tmp0qxjaewm']
+[2024-05-16T11:24:46.555+0000] {standard_task_runner.py:91} INFO - Job 490: Subtask import_table2
+[2024-05-16T11:24:46.671+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_tables.import_table2 scheduled__2024-05-07T00:00:00+00:00 [running]> on host 7084a6d88d3b
+[2024-05-16T11:24:46.767+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='bses' AIRFLOW_CTX_DAG_ID='dag_tables' AIRFLOW_CTX_TASK_ID='import_table2' AIRFLOW_CTX_EXECUTION_DATE='2024-05-07T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-05-07T00:00:00+00:00'
+[2024-05-16T11:24:46.770+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-05-16T11:24:46.780+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-05-16T11:24:46.781+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n                mysql -h host.docker.internal -u root --password=12345678 test < /opt/***/dags/product_category.sql\n                ']
+[2024-05-16T11:24:46.791+0000] {subprocess.py:86} INFO - Output:
+[2024-05-16T11:24:46.889+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2024-05-16T11:24:46.892+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-05-16T11:24:46.909+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=dag_tables, task_id=import_table2, execution_date=20240507T000000, start_date=20240516T112446, end_date=20240516T112446
+[2024-05-16T11:24:46.947+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-05-16T11:24:46.960+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-05-16T11:24:46.961+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

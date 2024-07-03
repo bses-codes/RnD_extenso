@@ -1,0 +1,306 @@
+[2024-05-04T10:23:53.569+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-05-04T10:23:53.583+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [queued]>
+[2024-05-04T10:23:53.590+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [queued]>
+[2024-05-04T10:23:53.591+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 6
+[2024-05-04T10:23:53.597+0000] {taskinstance.py:2327} INFO - Executing <Task(MySqlOperator): task1> on 2024-05-03 00:00:00+00:00
+[2024-05-04T10:23:53.601+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_mysql', 'task1', 'scheduled__2024-05-03T00:00:00+00:00', '--job-id', '16', '--raw', '--subdir', 'DAGS_FOLDER/dag_mysql.py', '--cfg-path', '/tmp/tmp6_xqrcge']
+[2024-05-04T10:23:53.602+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=812) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-05-04T10:23:53.602+0000] {standard_task_runner.py:91} INFO - Job 16: Subtask task1
+[2024-05-04T10:23:53.602+0000] {standard_task_runner.py:63} INFO - Started process 815 to run task
+[2024-05-04T10:23:53.624+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [running]> on host 97b2d875d020
+[2024-05-04T10:23:53.660+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='bses' AIRFLOW_CTX_DAG_ID='dag_mysql' AIRFLOW_CTX_TASK_ID='task1' AIRFLOW_CTX_EXECUTION_DATE='2024-05-03T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-05-03T00:00:00+00:00'
+[2024-05-04T10:23:53.660+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-05-04T10:23:53.667+0000] {sql.py:276} INFO - Executing: SHOW DATABASES;
+[2024-05-04T10:23:53.671+0000] {base.py:84} INFO - Using connection ID 'mysql_local' for task execution.
+[2024-05-04T10:23:53.675+0000] {base.py:84} INFO - Using connection ID 'mysql_local' for task execution.
+[2024-05-04T10:23:53.680+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-05-04T10:23:53.680+0000] {taskinstance.py:2890} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 282, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 397, in run
+    with closing(self.get_conn()) as conn:
+                 ^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/mysql/hooks/mysql.py", line 195, in get_conn
+    return MySQLdb.connect(**conn_config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/MySQLdb/__init__.py", line 121, in Connect
+    return Connection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/MySQLdb/connections.py", line 195, in __init__
+    super().__init__(*args, **kwargs2)
+MySQLdb.OperationalError: (2002, "Can't connect to server on 'host.docker.internal' (115)")
+[2024-05-04T10:23:53.685+0000] {taskinstance.py:1205} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_mysql, task_id=task1, execution_date=20240503T000000, start_date=20240504T102353, end_date=20240504T102353
+[2024-05-04T10:23:53.690+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 16 for task task1 ((2002, "Can't connect to server on 'host.docker.internal' (115)"); 815)
+[2024-05-04T10:23:53.700+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-05-04T10:23:53.707+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-05-04T10:23:53.708+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-05-04T10:26:56.855+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-05-04T10:26:56.879+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [queued]>
+[2024-05-04T10:26:56.887+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [queued]>
+[2024-05-04T10:26:56.888+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 6
+[2024-05-04T10:26:56.896+0000] {taskinstance.py:2327} INFO - Executing <Task(MySqlOperator): task1> on 2024-05-03 00:00:00+00:00
+[2024-05-04T10:26:56.906+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_mysql', 'task1', 'scheduled__2024-05-03T00:00:00+00:00', '--job-id', '19', '--raw', '--subdir', 'DAGS_FOLDER/dag_mysql.py', '--cfg-path', '/tmp/tmp3u2qj17d']
+[2024-05-04T10:26:56.908+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=1003) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-05-04T10:26:56.909+0000] {standard_task_runner.py:91} INFO - Job 19: Subtask task1
+[2024-05-04T10:26:56.909+0000] {standard_task_runner.py:63} INFO - Started process 1006 to run task
+[2024-05-04T10:26:56.938+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [running]> on host 97b2d875d020
+[2024-05-04T10:26:56.980+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='bses' AIRFLOW_CTX_DAG_ID='dag_mysql' AIRFLOW_CTX_TASK_ID='task1' AIRFLOW_CTX_EXECUTION_DATE='2024-05-03T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-05-03T00:00:00+00:00'
+[2024-05-04T10:26:56.981+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-05-04T10:26:56.989+0000] {sql.py:276} INFO - Executing: SHOW DATABASES;
+[2024-05-04T10:26:56.993+0000] {base.py:84} INFO - Using connection ID 'mysql_local' for task execution.
+[2024-05-04T10:26:56.998+0000] {base.py:84} INFO - Using connection ID 'mysql_local' for task execution.
+[2024-05-04T10:26:57.004+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-05-04T10:26:57.004+0000] {taskinstance.py:2890} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 282, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 397, in run
+    with closing(self.get_conn()) as conn:
+                 ^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/mysql/hooks/mysql.py", line 195, in get_conn
+    return MySQLdb.connect(**conn_config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/MySQLdb/__init__.py", line 121, in Connect
+    return Connection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/MySQLdb/connections.py", line 195, in __init__
+    super().__init__(*args, **kwargs2)
+MySQLdb.OperationalError: (1524, "Plugin 'mysql_native_password' is not loaded")
+[2024-05-04T10:26:57.010+0000] {taskinstance.py:1205} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_mysql, task_id=task1, execution_date=20240503T000000, start_date=20240504T102656, end_date=20240504T102657
+[2024-05-04T10:26:57.016+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 19 for task task1 ((1524, "Plugin 'mysql_native_password' is not loaded"); 1006)
+[2024-05-04T10:26:57.050+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-05-04T10:26:57.063+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-05-04T10:26:57.064+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-05-04T10:29:29.205+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-05-04T10:29:29.219+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [queued]>
+[2024-05-04T10:29:29.224+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [queued]>
+[2024-05-04T10:29:29.224+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 6
+[2024-05-04T10:29:29.230+0000] {taskinstance.py:2327} INFO - Executing <Task(MySqlOperator): task1> on 2024-05-03 00:00:00+00:00
+[2024-05-04T10:29:29.235+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_mysql', 'task1', 'scheduled__2024-05-03T00:00:00+00:00', '--job-id', '22', '--raw', '--subdir', 'DAGS_FOLDER/dag_mysql.py', '--cfg-path', '/tmp/tmpvkgrstqc']
+[2024-05-04T10:29:29.236+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=1162) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-05-04T10:29:29.236+0000] {standard_task_runner.py:91} INFO - Job 22: Subtask task1
+[2024-05-04T10:29:29.236+0000] {standard_task_runner.py:63} INFO - Started process 1165 to run task
+[2024-05-04T10:29:29.260+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [running]> on host 97b2d875d020
+[2024-05-04T10:29:29.301+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='bses' AIRFLOW_CTX_DAG_ID='dag_mysql' AIRFLOW_CTX_TASK_ID='task1' AIRFLOW_CTX_EXECUTION_DATE='2024-05-03T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-05-03T00:00:00+00:00'
+[2024-05-04T10:29:29.302+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-05-04T10:29:29.309+0000] {sql.py:276} INFO - Executing: SHOW DATABASES;
+[2024-05-04T10:29:29.314+0000] {base.py:84} INFO - Using connection ID 'mysql_local' for task execution.
+[2024-05-04T10:29:29.318+0000] {base.py:84} INFO - Using connection ID 'mysql_local' for task execution.
+[2024-05-04T10:29:29.326+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-05-04T10:29:29.326+0000] {taskinstance.py:2890} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 282, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 397, in run
+    with closing(self.get_conn()) as conn:
+                 ^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/mysql/hooks/mysql.py", line 195, in get_conn
+    return MySQLdb.connect(**conn_config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/MySQLdb/__init__.py", line 121, in Connect
+    return Connection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/MySQLdb/connections.py", line 195, in __init__
+    super().__init__(*args, **kwargs2)
+MySQLdb.OperationalError: (1049, "Unknown database 'test'")
+[2024-05-04T10:29:29.332+0000] {taskinstance.py:1205} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_mysql, task_id=task1, execution_date=20240503T000000, start_date=20240504T102929, end_date=20240504T102929
+[2024-05-04T10:29:29.337+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 22 for task task1 ((1049, "Unknown database 'test'"); 1165)
+[2024-05-04T10:29:29.377+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-05-04T10:29:29.386+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-05-04T10:29:29.387+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-05-04T10:31:41.297+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-05-04T10:31:41.313+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [queued]>
+[2024-05-04T10:31:41.320+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [queued]>
+[2024-05-04T10:31:41.322+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 6
+[2024-05-04T10:31:41.330+0000] {taskinstance.py:2327} INFO - Executing <Task(MySqlOperator): task1> on 2024-05-03 00:00:00+00:00
+[2024-05-04T10:31:41.335+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_mysql', 'task1', 'scheduled__2024-05-03T00:00:00+00:00', '--job-id', '27', '--raw', '--subdir', 'DAGS_FOLDER/dag_mysql.py', '--cfg-path', '/tmp/tmpvq_xdzf7']
+[2024-05-04T10:31:41.337+0000] {standard_task_runner.py:91} INFO - Job 27: Subtask task1
+[2024-05-04T10:31:41.337+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=223) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-05-04T10:31:41.341+0000] {standard_task_runner.py:63} INFO - Started process 226 to run task
+[2024-05-04T10:31:41.364+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [running]> on host fcbb02d87472
+[2024-05-04T10:31:41.404+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='bses' AIRFLOW_CTX_DAG_ID='dag_mysql' AIRFLOW_CTX_TASK_ID='task1' AIRFLOW_CTX_EXECUTION_DATE='2024-05-03T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-05-03T00:00:00+00:00'
+[2024-05-04T10:31:41.405+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-05-04T10:31:41.413+0000] {sql.py:276} INFO - Executing: SHOW DATABASES;
+[2024-05-04T10:31:41.418+0000] {base.py:84} INFO - Using connection ID 'mysql_local' for task execution.
+[2024-05-04T10:31:41.423+0000] {base.py:84} INFO - Using connection ID 'mysql_local' for task execution.
+[2024-05-04T10:31:41.429+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-05-04T10:31:41.430+0000] {taskinstance.py:2890} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 282, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 397, in run
+    with closing(self.get_conn()) as conn:
+                 ^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/mysql/hooks/mysql.py", line 195, in get_conn
+    return MySQLdb.connect(**conn_config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/MySQLdb/__init__.py", line 121, in Connect
+    return Connection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/MySQLdb/connections.py", line 195, in __init__
+    super().__init__(*args, **kwargs2)
+MySQLdb.OperationalError: (1049, "Unknown database 'test'")
+[2024-05-04T10:31:41.435+0000] {taskinstance.py:1205} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_mysql, task_id=task1, execution_date=20240503T000000, start_date=20240504T103141, end_date=20240504T103141
+[2024-05-04T10:31:41.440+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 27 for task task1 ((1049, "Unknown database 'test'"); 226)
+[2024-05-04T10:31:41.482+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-05-04T10:31:41.494+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-05-04T10:31:41.495+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-05-04T10:34:15.132+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-05-04T10:34:15.146+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [queued]>
+[2024-05-04T10:34:15.150+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [queued]>
+[2024-05-04T10:34:15.150+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 6
+[2024-05-04T10:34:15.157+0000] {taskinstance.py:2327} INFO - Executing <Task(MySqlOperator): task1> on 2024-05-03 00:00:00+00:00
+[2024-05-04T10:34:15.160+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_mysql', 'task1', 'scheduled__2024-05-03T00:00:00+00:00', '--job-id', '32', '--raw', '--subdir', 'DAGS_FOLDER/dag_mysql.py', '--cfg-path', '/tmp/tmpkgbadg_8']
+[2024-05-04T10:34:15.161+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=198) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-05-04T10:34:15.162+0000] {standard_task_runner.py:91} INFO - Job 32: Subtask task1
+[2024-05-04T10:34:15.162+0000] {standard_task_runner.py:63} INFO - Started process 201 to run task
+[2024-05-04T10:34:15.183+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [running]> on host f85b7a0b58b5
+[2024-05-04T10:34:15.217+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='bses' AIRFLOW_CTX_DAG_ID='dag_mysql' AIRFLOW_CTX_TASK_ID='task1' AIRFLOW_CTX_EXECUTION_DATE='2024-05-03T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-05-03T00:00:00+00:00'
+[2024-05-04T10:34:15.218+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-05-04T10:34:15.226+0000] {sql.py:276} INFO - Executing: SHOW DATABASES;
+[2024-05-04T10:34:15.230+0000] {base.py:84} INFO - Using connection ID 'mysql_local' for task execution.
+[2024-05-04T10:34:15.234+0000] {base.py:84} INFO - Using connection ID 'mysql_local' for task execution.
+[2024-05-04T10:34:15.240+0000] {sql.py:457} INFO - Running statement: SHOW DATABASES;, parameters: None
+[2024-05-04T10:34:15.242+0000] {sql.py:466} INFO - Rows affected: 7
+[2024-05-04T10:34:15.244+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:407 AirflowProviderDeprecationWarning: Call to deprecated method _make_common_data_structure. (The `_make_serializable` method is deprecated and support will be removed in a future version of the common.sql provider. Please update the DbApiHook's provider to a version based on common.sql >= 1.9.1.)
+[2024-05-04T10:34:15.244+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-05-04T10:34:15.254+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=dag_mysql, task_id=task1, execution_date=20240503T000000, start_date=20240504T103415, end_date=20240504T103415
+[2024-05-04T10:34:15.263+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-05-04T10:34:15.270+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-05-04T10:34:15.271+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-05-04T10:40:40.316+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-05-04T10:40:40.338+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [queued]>
+[2024-05-04T10:40:40.348+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [queued]>
+[2024-05-04T10:40:40.348+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 6
+[2024-05-04T10:40:40.359+0000] {taskinstance.py:2327} INFO - Executing <Task(MySqlOperator): task1> on 2024-05-03 00:00:00+00:00
+[2024-05-04T10:40:40.368+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=617) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-05-04T10:40:40.366+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_mysql', 'task1', 'scheduled__2024-05-03T00:00:00+00:00', '--job-id', '40', '--raw', '--subdir', 'DAGS_FOLDER/dag_mysql.py', '--cfg-path', '/tmp/tmp8jgepl3t']
+[2024-05-04T10:40:40.372+0000] {standard_task_runner.py:63} INFO - Started process 623 to run task
+[2024-05-04T10:40:40.372+0000] {standard_task_runner.py:91} INFO - Job 40: Subtask task1
+[2024-05-04T10:40:40.414+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [running]> on host f85b7a0b58b5
+[2024-05-04T10:40:40.463+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='bses' AIRFLOW_CTX_DAG_ID='dag_mysql' AIRFLOW_CTX_TASK_ID='task1' AIRFLOW_CTX_EXECUTION_DATE='2024-05-03T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-05-03T00:00:00+00:00'
+[2024-05-04T10:40:40.464+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-05-04T10:40:40.474+0000] {sql.py:276} INFO - Executing: create table hello (name text, age int);
+[2024-05-04T10:40:40.478+0000] {base.py:84} INFO - Using connection ID 'mysql_local' for task execution.
+[2024-05-04T10:40:40.482+0000] {base.py:84} INFO - Using connection ID 'mysql_local' for task execution.
+[2024-05-04T10:40:40.488+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-05-04T10:40:40.488+0000] {taskinstance.py:2890} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 282, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 397, in run
+    with closing(self.get_conn()) as conn:
+                 ^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/mysql/hooks/mysql.py", line 195, in get_conn
+    return MySQLdb.connect(**conn_config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/MySQLdb/__init__.py", line 121, in Connect
+    return Connection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/MySQLdb/connections.py", line 195, in __init__
+    super().__init__(*args, **kwargs2)
+MySQLdb.OperationalError: (1524, "Plugin 'mysql_native_password' is not loaded")
+[2024-05-04T10:40:40.493+0000] {taskinstance.py:1205} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_mysql, task_id=task1, execution_date=20240503T000000, start_date=20240504T104040, end_date=20240504T104040
+[2024-05-04T10:40:40.498+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 40 for task task1 ((1524, "Plugin 'mysql_native_password' is not loaded"); 623)
+[2024-05-04T10:40:40.510+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-05-04T10:40:40.519+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-05-04T10:40:40.519+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-05-04T10:42:21.573+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-05-04T10:42:21.592+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [queued]>
+[2024-05-04T10:42:21.596+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [queued]>
+[2024-05-04T10:42:21.597+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 6
+[2024-05-04T10:42:21.605+0000] {taskinstance.py:2327} INFO - Executing <Task(MySqlOperator): task1> on 2024-05-03 00:00:00+00:00
+[2024-05-04T10:42:21.610+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_mysql', 'task1', 'scheduled__2024-05-03T00:00:00+00:00', '--job-id', '46', '--raw', '--subdir', 'DAGS_FOLDER/dag_mysql.py', '--cfg-path', '/tmp/tmpk48cirjc']
+[2024-05-04T10:42:21.611+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=730) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-05-04T10:42:21.612+0000] {standard_task_runner.py:91} INFO - Job 46: Subtask task1
+[2024-05-04T10:42:21.613+0000] {standard_task_runner.py:63} INFO - Started process 736 to run task
+[2024-05-04T10:42:21.641+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_mysql.task1 scheduled__2024-05-03T00:00:00+00:00 [running]> on host f85b7a0b58b5
+[2024-05-04T10:42:21.687+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='bses' AIRFLOW_CTX_DAG_ID='dag_mysql' AIRFLOW_CTX_TASK_ID='task1' AIRFLOW_CTX_EXECUTION_DATE='2024-05-03T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-05-03T00:00:00+00:00'
+[2024-05-04T10:42:21.690+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-05-04T10:42:21.708+0000] {sql.py:276} INFO - Executing: create table hello (name text, age int);
+[2024-05-04T10:42:21.718+0000] {base.py:84} INFO - Using connection ID 'mysql_local' for task execution.
+[2024-05-04T10:42:21.727+0000] {base.py:84} INFO - Using connection ID 'mysql_local' for task execution.
+[2024-05-04T10:42:21.740+0000] {sql.py:457} INFO - Running statement: create table hello (name text, age int);, parameters: None
+[2024-05-04T10:42:21.742+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-05-04T10:42:21.745+0000] {taskinstance.py:2890} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 282, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 404, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 462, in _run_command
+    cur.execute(sql_statement)
+  File "/home/airflow/.local/lib/python3.12/site-packages/MySQLdb/cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/MySQLdb/cursors.py", line 330, in _query
+    db.query(q)
+  File "/home/airflow/.local/lib/python3.12/site-packages/MySQLdb/connections.py", line 261, in query
+    _mysql.connection.query(self, query)
+MySQLdb.OperationalError: (1050, "Table 'hello' already exists")
+[2024-05-04T10:42:21.754+0000] {taskinstance.py:1205} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_mysql, task_id=task1, execution_date=20240503T000000, start_date=20240504T104221, end_date=20240504T104221
+[2024-05-04T10:42:21.768+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 46 for task task1 ((1050, "Table 'hello' already exists"); 736)
+[2024-05-04T10:42:21.795+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-05-04T10:42:21.805+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-05-04T10:42:21.807+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

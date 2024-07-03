@@ -1,0 +1,101 @@
+[2024-05-19T03:18:45.982+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-05-19T03:18:46.008+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_analysis.analysis scheduled__2024-05-09T00:00:00+00:00 [queued]>
+[2024-05-19T03:18:46.017+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_analysis.analysis scheduled__2024-05-09T00:00:00+00:00 [queued]>
+[2024-05-19T03:18:46.020+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 6
+[2024-05-19T03:18:46.031+0000] {taskinstance.py:2327} INFO - Executing <Task(PythonOperator): analysis> on 2024-05-09 00:00:00+00:00
+[2024-05-19T03:18:46.053+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=192) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-05-19T03:18:46.055+0000] {standard_task_runner.py:63} INFO - Started process 216 to run task
+[2024-05-19T03:18:46.056+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_analysis', 'analysis', 'scheduled__2024-05-09T00:00:00+00:00', '--job-id', '567', '--raw', '--subdir', 'DAGS_FOLDER/dag1.py', '--cfg-path', '/tmp/tmp1qkrgnob']
+[2024-05-19T03:18:46.060+0000] {standard_task_runner.py:91} INFO - Job 567: Subtask analysis
+[2024-05-19T03:18:46.118+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_analysis.analysis scheduled__2024-05-09T00:00:00+00:00 [running]> on host cf8d95dc7aa1
+[2024-05-19T03:18:46.187+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='bses' AIRFLOW_CTX_DAG_ID='dag_analysis' AIRFLOW_CTX_TASK_ID='analysis' AIRFLOW_CTX_EXECUTION_DATE='2024-05-09T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-05-09T00:00:00+00:00'
+[2024-05-19T03:18:46.192+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-05-19T03:18:46.225+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-05-19T03:18:46.225+0000] {taskinstance.py:2890} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to MySQL server on 'Bisheshs-MacBook-Pro.local:3306' (22)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/dag1.py", line 8, in run
+    conn = connection.connect(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/airflow/.local/lib/python3.12/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/airflow/.local/lib/python3.12/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.DatabaseError: 2003 (HY000): Can't connect to MySQL server on 'Bisheshs-MacBook-Pro.local:3306' (22)
+[2024-05-19T03:18:46.242+0000] {taskinstance.py:1205} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_analysis, task_id=analysis, execution_date=20240509T000000, start_date=20240519T031846, end_date=20240519T031846
+[2024-05-19T03:18:46.249+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 567 for task analysis (2003 (HY000): Can't connect to MySQL server on 'Bisheshs-MacBook-Pro.local:3306' (22); 216)
+[2024-05-19T03:18:46.283+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-05-19T03:18:46.298+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-05-19T03:18:46.300+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-05-19T03:19:44.303+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-05-19T03:19:44.361+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_analysis.analysis scheduled__2024-05-09T00:00:00+00:00 [queued]>
+[2024-05-19T03:19:44.373+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_analysis.analysis scheduled__2024-05-09T00:00:00+00:00 [queued]>
+[2024-05-19T03:19:44.374+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 6
+[2024-05-19T03:19:44.407+0000] {taskinstance.py:2327} INFO - Executing <Task(PythonOperator): analysis> on 2024-05-09 00:00:00+00:00
+[2024-05-19T03:19:44.431+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=274) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-05-19T03:19:44.434+0000] {standard_task_runner.py:63} INFO - Started process 296 to run task
+[2024-05-19T03:19:44.425+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_analysis', 'analysis', 'scheduled__2024-05-09T00:00:00+00:00', '--job-id', '583', '--raw', '--subdir', 'DAGS_FOLDER/dag1.py', '--cfg-path', '/tmp/tmplw8l4op6']
+[2024-05-19T03:19:44.439+0000] {standard_task_runner.py:91} INFO - Job 583: Subtask analysis
+[2024-05-19T03:19:44.603+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_analysis.analysis scheduled__2024-05-09T00:00:00+00:00 [running]> on host cf8d95dc7aa1
+[2024-05-19T03:19:44.832+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='bses' AIRFLOW_CTX_DAG_ID='dag_analysis' AIRFLOW_CTX_TASK_ID='analysis' AIRFLOW_CTX_EXECUTION_DATE='2024-05-09T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-05-09T00:00:00+00:00'
+[2024-05-19T03:19:44.834+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-05-19T03:19:44.952+0000] {logging_mixin.py:188} WARNING - /opt/***/dags/dag1.py:15 UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+[2024-05-19T03:19:45.065+0000] {logging_mixin.py:188} WARNING - /opt/***/dags/dag1.py:17 UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+[2024-05-19T03:19:45.070+0000] {logging_mixin.py:188} WARNING - /opt/***/dags/dag1.py:19 UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+[2024-05-19T03:19:45.076+0000] {logging_mixin.py:188} WARNING - /opt/***/dags/dag1.py:21 UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+[2024-05-19T03:19:45.086+0000] {logging_mixin.py:188} WARNING - /opt/***/dags/dag1.py:23 UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+[2024-05-19T03:19:45.171+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-05-19T03:19:45.174+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-05-19T03:19:45.181+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=dag_analysis, task_id=analysis, execution_date=20240509T000000, start_date=20240519T031944, end_date=20240519T031945
+[2024-05-19T03:19:45.205+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-05-19T03:19:45.217+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-05-19T03:19:45.218+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-05-19T03:20:57.201+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-05-19T03:20:57.227+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_analysis.analysis scheduled__2024-05-09T00:00:00+00:00 [queued]>
+[2024-05-19T03:20:57.237+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_analysis.analysis scheduled__2024-05-09T00:00:00+00:00 [queued]>
+[2024-05-19T03:20:57.239+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 6
+[2024-05-19T03:20:57.265+0000] {taskinstance.py:2327} INFO - Executing <Task(PythonOperator): analysis> on 2024-05-09 00:00:00+00:00
+[2024-05-19T03:20:57.273+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_analysis', 'analysis', 'scheduled__2024-05-09T00:00:00+00:00', '--job-id', '604', '--raw', '--subdir', 'DAGS_FOLDER/dag1.py', '--cfg-path', '/tmp/tmpnn5jgnfl']
+[2024-05-19T03:20:57.277+0000] {standard_task_runner.py:91} INFO - Job 604: Subtask analysis
+[2024-05-19T03:20:57.276+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=376) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-05-19T03:20:57.286+0000] {standard_task_runner.py:63} INFO - Started process 400 to run task
+[2024-05-19T03:20:57.368+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_analysis.analysis scheduled__2024-05-09T00:00:00+00:00 [running]> on host cf8d95dc7aa1
+[2024-05-19T03:20:57.508+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='bses' AIRFLOW_CTX_DAG_ID='dag_analysis' AIRFLOW_CTX_TASK_ID='analysis' AIRFLOW_CTX_EXECUTION_DATE='2024-05-09T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-05-09T00:00:00+00:00'
+[2024-05-19T03:20:57.510+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-05-19T03:20:57.605+0000] {logging_mixin.py:188} WARNING - /opt/***/dags/dag1.py:15 UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+[2024-05-19T03:20:57.698+0000] {logging_mixin.py:188} WARNING - /opt/***/dags/dag1.py:17 UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+[2024-05-19T03:20:57.709+0000] {logging_mixin.py:188} WARNING - /opt/***/dags/dag1.py:19 UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+[2024-05-19T03:20:57.719+0000] {logging_mixin.py:188} WARNING - /opt/***/dags/dag1.py:21 UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+[2024-05-19T03:20:57.723+0000] {logging_mixin.py:188} WARNING - /opt/***/dags/dag1.py:23 UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+[2024-05-19T03:20:57.802+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-05-19T03:20:57.803+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-05-19T03:20:57.808+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=dag_analysis, task_id=analysis, execution_date=20240509T000000, start_date=20240519T032057, end_date=20240519T032057
+[2024-05-19T03:20:57.841+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-05-19T03:20:57.853+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-05-19T03:20:57.854+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
