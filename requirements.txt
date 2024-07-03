@@ -6,3 +6,17 @@ seaborn==0.13.2
 scikit_learn==1.5.0
 statsmodels==0.14.2
 mlxtend==0.23.1
+beautifulsoup4==4.12.3
+findspark==2.0.1
+jupyter==1.0.0
+kafka-python-ng==2.2.2
+lxml==5.2.2
+mysql-connector-python==9.0.0
+networkx==3.3
+pgmpy==0.1.25
+plotly==5.22.0
+pyspark==3.5.1
+selenium==4.22.0
+squarify==0.4.3
+wordcloud==1.9.3
+pgmpy==0.1.25
