@@ -48,6 +48,7 @@ This notebook demonstrates:
 
 1. Install MySQL and kafka on the host machine. 
 2. Excute the following commands in terminal: `<location to kafka/bin folder>/zookeeper-server-start.sh <location to kafka/config folder>/zookeeper.properties` and `<location to kafka/bin folder>/kafka-server-start.sh <location to kafka/config folder>/server.properties`
+3. Update .env file with your credentials.
 4. Run the Producer notebook (`producer.ipynb`) to produce data and send it through specified topic.
 5. Run the Consumer notebook (`consumer.ipynb`) to consume the sent data.
 
