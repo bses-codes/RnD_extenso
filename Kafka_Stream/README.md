@@ -46,6 +46,8 @@ This notebook demonstrates:
 
 ## Usage
 
-1. Run the Producer Encryption notebook (`producer_enc.ipynb`) to produce encrypted data.
-2. Run the Consumer Decryption notebook (`consumer_dec.ipynb`) to consume and decrypt the encrypted data.
-3. Run the Consumer notebook (`consumer.ipynb`), adjust the variables after running any two producers to read data from both producers.
+1. Install MySQL and kafka on the host machine. 
+2. Excute the following commands in terminal: `<location to kafka/bin folder>/zookeeper-server-start.sh <location to kafka/config folder>/zookeeper.properties` and `<location to kafka/bin folder>/kafka-server-start.sh <location to kafka/config folder>/server.properties`
+4. Run the Producer notebook (`producer.ipynb`) to produce data and send it through specified topic.
+5. Run the Consumer notebook (`consumer.ipynb`) to consume the sent data.
+
